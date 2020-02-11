@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% if euser %}
+    <form action="{% url 'update' pk=euser.id %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input type="text" name="fname" value="{{euser.name}}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    address
+                </td>
+                <td>
+                    <input type="text" name="address" value="{{euser.address}}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    City
+                </td>
+                <td>
+                    <input type="text" name="city" value="{{euser.city}}">
+                </td>
+            </tr><tr>
+                <td>
+                    phone
+                </td>
+                <td>
+                    <input type="text" name="phone" value="{{euser.phone}}">
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <input type="submit" value="Update">
+                </td>
+            </tr>
+        </table>
+    </form>
+    {% endif %}
+</body>
+</html>

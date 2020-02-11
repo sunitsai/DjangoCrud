@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Show Data</h2>
+        
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Phone</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    {% if all_user %}
+    {% for a in all_user %}
+    <tbody>
+      <tr>
+        <td>{{a.id}}</td>
+        <td>{{a.name}}</td>
+        <td>{{a.address}}</td>
+        <td>{{a.city}}</td>        
+        <td>{{a.phone}}</td>
+
+
+        <td><form action="{% url 'editpage' pk=a.id %}" name ="edit" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{a.id}}">
+            <input type="submit" value="Edit">
+        </form>
+        <td><form action="{% url 'delete' pk=a.id %}" name="delete" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{a.id}}">
+            <input type="submit" value="Edit">
+        </form>
+
+        </td>
+      </tr>
+     
+    </tbody>
+    {% endfor %}
+    {% endif %}
+  </table>
+</div>
+
+</body>
+</html>
